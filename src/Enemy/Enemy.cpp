@@ -9,6 +9,7 @@ void Enemy::Init() {
 	m_handle = LoadGraph(ENEMY_PATH);
 	m_posX = 100.0f;
 	m_posY = 100.0f;
+	m_speedX = 10.0f;
 	m_hp = 1;
 	m_flg = true;
 	m_turn = 1;
@@ -26,7 +27,7 @@ void Enemy::Step() {
 		m_turn *= -1;
 		m_posY += 10.0f;
 	}
-	m_posX += 10 * m_turn;
+	m_posX += m_speedX * m_turn;
 
 }
 
@@ -47,4 +48,13 @@ void Enemy::Fin() {
 	m_posY = 100.0f;
 	m_hp = 1;
 	m_flg = true;
+}
+
+
+void Enemy::SetPosX(float x) {
+	m_posX = x;
+}
+
+void Enemy::SetPosY(float y) {
+	m_posY = y;
 }
