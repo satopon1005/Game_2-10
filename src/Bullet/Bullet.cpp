@@ -26,9 +26,12 @@ void Bullet::Init()
 }
 void Bullet::Step()
 {
+	//g—p’†‚È‚ç
 	if (m_isUse) {
+		//“®‚«
 		Move();
 
+		//¶‰E‚É“–‚½‚ê‚Î’µ‚Ë•Ô‚é
 		if (m_pos.x <= 0) {
 			m_pos.x = 0;
 			m_vec.x *= -1;
