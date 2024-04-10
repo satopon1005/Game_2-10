@@ -116,6 +116,18 @@ VECTOR GetVector(VECTOR vec_here, VECTOR vec_dis, float speed)
 	return mul_vec;
 }
 
+//ベクトルを指定の大きさにする
+VECTOR GetVector(VECTOR vec, float speed)
+{
+	//正規化
+	VECTOR nor_vec = NorVec(vec);
+
+	//取得するベクトルの大きさ
+	VECTOR mul_vec = MulVec(nor_vec, speed);
+
+	return mul_vec;
+}
+
 //内積
 float VecDot(VECTOR vec1, VECTOR vec2)
 {

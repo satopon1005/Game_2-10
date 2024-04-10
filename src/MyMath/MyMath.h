@@ -26,6 +26,7 @@ VECTOR NorVec(VECTOR vec);
 
 //現在地から目的地まで指定の速さで動くベクトル
 VECTOR GetVector(VECTOR vec_here, VECTOR vec_dis, float speed = 1.0f);
+VECTOR GetVector(VECTOR vec, float speed = 1.0f);
 
 
 //内積
