@@ -33,7 +33,7 @@ void Enemy::Step() {
 void Enemy::Draw() {
 
 	// test—p
-	DrawPixel(m_pos.x, m_pos.y, GetColor(0, 255, 0));
+	DrawCircle(m_pos.x, m_pos.y, 5, GetColor(0, 255, 0), true);
 
 	// •`‰æ
 	//DrawGraph(m_pos.x, m_pos.y, m_handle, true);
