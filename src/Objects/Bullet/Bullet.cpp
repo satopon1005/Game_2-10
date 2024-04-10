@@ -1,7 +1,7 @@
 #include "DxLib.h"
 #include "Bullet.h"
-#include "../Common.h"
-#include "../MyMath/MyMath.h"
+#include "../../Common.h"
+#include "../../MyMath/MyMath.h"
 
 Bullet::Bullet()
 {

@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "Dxlib.h"
-#include "../Common.h"
+#include "../../Common.h"
 
 void Enemy::Init() {
 

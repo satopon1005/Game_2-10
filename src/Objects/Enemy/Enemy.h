@@ -7,7 +7,7 @@ class Enemy
 private:
 	int m_handle;			// ハンドル
 	VECTOR m_pos;			// 座標
-	float m_speedX;			// 移動速度
+	float m_speed;			// 移動速度
 	int m_hp;				// 体力
 	bool m_flg;				// 生存フラグ
 	int m_turn;				// 移動方向変更
