@@ -6,6 +6,7 @@ class Enemy
 {
 private:
 	int m_handle;			// ハンドル
+	VECTOR m_pos;
 	float m_posX, m_posY;	// 座標
 	float m_speedX;			// 移動速度
 	int m_hp;				// 体力
@@ -21,7 +22,7 @@ public:
 	float GetPosX() { return m_posX; };	// X座標取得
 	float GetPosY() { return m_posY; };	// Y座標取得
 
-	void SetPosX(float x);				// X座標設定
-	void SetPosY(float y);				// Y座標設定
+	void SetPosX(float x) { m_pos.x = x; };				// X座標設定
+	void SetPosY(float y) { m_pos.y = y; };				// Y座標設定
 
 };

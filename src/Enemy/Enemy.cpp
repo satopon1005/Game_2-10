@@ -2,13 +2,11 @@
 #include "Dxlib.h"
 #include "../Common.h"
 
-Enemy m_enemy;
-
 void Enemy::Init() {
 
 	m_handle = LoadGraph(ENEMY_PATH);
-	m_posX = 100.0f;
-	m_posY = 100.0f;
+	m_pos.x = 100.0f;
+	m_pos.y = 100.0f;
 	m_speedX = 10.0f;
 	m_hp = 1;
 	m_flg = true;
@@ -19,15 +17,15 @@ void Enemy::Init() {
 
 void Enemy::Step() {
 
-	if (m_posX > SCREEN_SIZE_X) {
+	if (m_pos.x >= SCREEN_SIZE_X) {
 		m_turn *= -1;
-		m_posY += 10.0f;
+		m_pos.y += 10.0f;
 	}
-	else if (m_posX < 0) {
+	else if (m_pos.x <= 0) {
 		m_turn *= -1;
-		m_posY += 10.0f;
+		m_pos.y += 10.0f;
 	}
-	m_posX += m_speedX * m_turn;
+	m_pos.x += m_speedX * m_turn;
 
 }
 
@@ -35,26 +33,17 @@ void Enemy::Step() {
 void Enemy::Draw() {
 
 	// test—p
-	DrawPixel(m_posX, m_posY, GetColor(0, 255, 0));
+	DrawPixel(m_pos.x, m_pos.y, GetColor(0, 255, 0));
 
 	// •`‰æ
-	//DrawGraph(m_posX, m_posY, m_handle, true);
+	//DrawGraph(m_pos.x, m_pos.y, m_handle, true);
 }
 
 
 void Enemy::Fin() {
 
-	m_posX = 100.0f;
-	m_posY = 100.0f;
+	m_pos.x = 100.0f;
+	m_pos.y = 100.0f;
 	m_hp = 1;
 	m_flg = true;
-}
-
-
-void Enemy::SetPosX(float x) {
-	m_posX = x;
-}
-
-void Enemy::SetPosY(float y) {
-	m_posY = y;
 }
