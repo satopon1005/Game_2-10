@@ -31,4 +31,5 @@ public:
 	void Spawn(VECTOR pos, VECTOR vec);
 	void Death();
 	void Move();
+	void MoveReflection(VECTOR pos);
 };

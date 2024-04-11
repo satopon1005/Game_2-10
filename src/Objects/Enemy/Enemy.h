@@ -1,6 +1,13 @@
 #pragma once
 
+#include "DxLib.h"
+
 #define ENEMY_PATH "-1"
+
+constexpr int ENEMY_NUM_X = 7;
+constexpr int ENEMY_NUM_Y = 5;
+
+constexpr float ENEMY_COLLISION_R = 20;
 
 class Enemy
 {
@@ -12,11 +19,18 @@ private:
 	bool m_flg;				// 生存フラグ
 	int m_turn;				// 移動方向変更
 
+	int type;
+	int m_enemy_index_x;
+	int m_enemy_index_y;
+
 public:
-	void Init();
+	void Init(int index_x, int index_y, int type_index);
 	void Step();
 	void Draw();
 	void Fin();
+
+	void Move();
+	void Death();
 
 	float GetPosX() { return m_pos.x; };	// X座標取得
 	float GetPosY() { return m_pos.y; };	// Y座標取得

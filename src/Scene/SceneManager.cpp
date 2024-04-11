@@ -33,15 +33,16 @@ void SceneManager::Main()
 	}
 	//=======================================================================================
 	case INIT_PLAY: {
-
+		scene_play.InitPlay();
+		m_current_scene_ID = LOOP_PLAY;
 		break;
 	}
 	case LOOP_PLAY: {
-
+		scene_play.LoopPlay();
 		break;
 	}
 	case FIN_PLAY: {
-
+		scene_play.FinPlay();
 		break;
 	}
 	//=======================================================================================
