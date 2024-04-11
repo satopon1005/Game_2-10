@@ -4,8 +4,8 @@
 void PlayerInfo::Init() {
 
 	m_handle = LoadGraph(PLAYER_PATH);
-	m_pos.x = 500;
-	m_pos.y = 200;
+	m_pos.x = 500.0f;
+	m_pos.y = 700.0f;
 	m_speedX = 2.0f;
 	m_isUse = true;
 
@@ -29,7 +29,12 @@ void PlayerInfo::Step() {
 
 void PlayerInfo::Draw() {
 	// •`‰æ
-	DrawGraph(m_pos.x, m_pos.y, m_handle, true);
+	DrawExtendGraph(m_pos.x - PLAYER_COLLISION_X / 2,
+		m_pos.y - PLAYER_COLLISION_Y / 2,
+		m_pos.x + PLAYER_COLLISION_X / 2,
+		m_pos.y + PLAYER_COLLISION_Y / 2,
+		m_handle,
+		true);
 }
 
 

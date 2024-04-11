@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ScenePlay/ScenePlay.h"
+
 enum SCENE_TYPE
 {
 	INIT_TITLE,
@@ -23,6 +25,8 @@ class SceneManager
 {
 private:
 	int m_current_scene_ID;
+
+	ScenePlay scene_play;
 public:
 	SceneManager();
 	~SceneManager();

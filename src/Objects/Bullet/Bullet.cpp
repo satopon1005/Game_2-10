@@ -16,6 +16,7 @@ Bullet::~Bullet()
 	Fin();
 }
 
+
 void Bullet::Init()
 {
 	m_handle = LoadGraph(BULLET_HANDLE_PATH);
@@ -24,6 +25,7 @@ void Bullet::Init()
 	m_isUse = false;
 	m_type = ENEMY_TYPE;
 }
+
 void Bullet::Step()
 {
 	//Žg—p’†‚È‚ç
@@ -47,16 +49,19 @@ void Bullet::Step()
 		}
 	}
 }
+
 void Bullet::Draw()
 {
 	if (m_isUse) {
 		DrawRotaGraph((int)m_pos.x, (int)m_pos.y, 1.0, 0.0, m_handle, false);
 	}
 }
+
 void Bullet::Fin()
 {
 	DeleteGraph(m_handle);
 }
+
 
 void Bullet::Spawn(VECTOR pos, VECTOR vec)
 {
@@ -67,12 +72,19 @@ void Bullet::Spawn(VECTOR pos, VECTOR vec)
 		m_isUse = true;
 	}
 }
+
 void Bullet::Death()
 {
 	m_isUse = false;
 }
+
 void Bullet::Move()
 {
 	m_pos.x += m_vec.x;
 	m_pos.y += m_vec.y;
+}
+
+void Bullet::MoveReflection(VECTOR pos)
+{
+	m_vec = GetVector(pos, m_pos, BULLET_SPEED);
 }

@@ -1,7 +1,11 @@
 #pragma once
 
+#include "DxLib.h"
 
 #define PLAYER_PATH "Data/Player/player.png"
+
+constexpr int PLAYER_COLLISION_X = 100;
+constexpr int PLAYER_COLLISION_Y = 15;
 
 class PlayerInfo
 {
