@@ -2,10 +2,12 @@
 
 #include "DxLib.h"
 
-constexpr char ENEMY_PATH[3][128] = {
+constexpr char ENEMY_PATH[5][128] = {
 	{"data/Enemy/enemy1.png"},
 	{"data/Enemy/enemy2.png"},
 	{"data/Enemy/enemy3.png"},
+	{"data/Enemy/enemy4.png"},
+	{"data/Enemy/enemy5.png"},
 };
 
 constexpr int ENEMY_NUM_X = 7;

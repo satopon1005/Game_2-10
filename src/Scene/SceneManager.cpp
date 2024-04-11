@@ -5,6 +5,7 @@
 SceneManager::SceneManager()
 {
 	m_current_scene_ID = 0;
+	scene_play.InitPlay();
 }
 SceneManager::~SceneManager()
 {
