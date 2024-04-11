@@ -1,4 +1,4 @@
-#include "play.h"
+#include "Player.h"
 #include "DxLib.h"
 
 
