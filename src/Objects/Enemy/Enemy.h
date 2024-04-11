@@ -2,12 +2,18 @@
 
 #include "DxLib.h"
 
-#define ENEMY_PATH "-1"
+constexpr char ENEMY_PATH[3][128] = {
+	{"data/Enemy/enemy1.png"},
+	{"data/Enemy/enemy2.png"},
+	{"data/Enemy/enemy3.png"},
+};
 
 constexpr int ENEMY_NUM_X = 7;
 constexpr int ENEMY_NUM_Y = 5;
 
 constexpr float ENEMY_COLLISION_R = 20;
+
+constexpr float ENEMY_SPEED = 5.0f;
 
 class Enemy
 {

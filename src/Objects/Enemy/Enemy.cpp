@@ -9,10 +9,10 @@ void Enemy::Init(int index_x, int index_y,int type_index)
 	m_enemy_index_x = index_x;
 	m_enemy_index_y = index_y;
 
-	m_handle = LoadGraph(ENEMY_PATH);
+	m_handle = LoadGraph(ENEMY_PATH[type]);
 	m_pos.x = 100.0f + ENEMY_COLLISION_R * 2 * m_enemy_index_x;
 	m_pos.y = 100.0f + ENEMY_COLLISION_R * 2 * m_enemy_index_y;
-	m_speed = 10.0f;
+	m_speed = ENEMY_SPEED;
 	m_hp = 1;
 	m_flg = true;
 }
@@ -24,10 +24,15 @@ void Enemy::Step() {
 void Enemy::Draw() {
 
 	// test—p
-	DrawCircle(m_pos.x, m_pos.y, 10, GetColor(0, 255, 0), true);
+	//DrawCircle(m_pos.x, m_pos.y, 10, GetColor(0, 255, 0), true);
 
 	// •`‰æ
-	//DrawGraph(m_pos.x, m_pos.y, m_handle, true);
+	DrawExtendGraph(m_pos.x - 15,
+		m_pos.y - 10,
+		m_pos.x + 15,
+		m_pos.y + 10,
+		m_handle,
+		true);
 }
 
 void Enemy::Fin() {
@@ -42,7 +47,7 @@ void Enemy::Fin() {
 void Enemy::Move()
 {
 	if (m_flg) {
-		if (m_pos.x >= SCREEN_SIZE_X - (ENEMY_NUM_X - m_enemy_index_x) * ENEMY_COLLISION_R) {
+		if (m_pos.x >= SCREEN_SIZE_X /*- (ENEMY_NUM_X - m_enemy_index_x) * ENEMY_COLLISION_R*/) {
 			m_speed *= -1;
 			m_pos.y += 10.0f;
 		}

@@ -7,6 +7,8 @@
 constexpr int PLAYER_COLLISION_X = 100;
 constexpr int PLAYER_COLLISION_Y = 15;
 
+constexpr float PLAYER_SPEED = 5;
+
 class PlayerInfo
 {
 private:

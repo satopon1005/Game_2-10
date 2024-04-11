@@ -19,6 +19,7 @@ private:
 
 public:
 	void InitPlay();
-	void LoopPlay();
+	void StepPlay();
+	void DrawPlay();
 	void FinPlay();
 };

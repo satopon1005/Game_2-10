@@ -12,7 +12,17 @@ void ScenePlay::InitPlay()
 	}
 }
 
-void ScenePlay::LoopPlay()
+void ScenePlay::StepPlay()
+{
+	player_info.Step();
+	for (int y_index = 0; y_index < ENEMY_NUM_Y; y_index++) {
+		for (int x_index = 0; x_index < ENEMY_NUM_X; x_index++) {
+			enemy_info[y_index][x_index].Step();
+		}
+	}
+}
+
+void ScenePlay::DrawPlay()
 {
 	for (int y_index = 0; y_index < ENEMY_NUM_Y; y_index++) {
 		for (int x_index = 0; x_index < ENEMY_NUM_X; x_index++) {

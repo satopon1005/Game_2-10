@@ -1,12 +1,14 @@
 #include "Player.h"
 #include "DxLib.h"
+#include "../../Common.h"
+#include "../../Input/Input.h"
 
 void PlayerInfo::Init() {
 
 	m_handle = LoadGraph(PLAYER_PATH);
 	m_pos.x = 500.0f;
 	m_pos.y = 700.0f;
-	m_speedX = 2.0f;
+	m_speedX = PLAYER_SPEED;
 	m_isUse = true;
 
 }
@@ -14,16 +16,19 @@ void PlayerInfo::Init() {
 void PlayerInfo::Step() {
 
 	//ç∂à⁄ìÆëÄçÏ
-	if (CheckHitKey(KEY_INPUT_LEFT) == 1)
+	if (Input::IsKeyDown(KEY_INPUT_LEFT))
 	{
 		m_pos.x -= m_speedX;
 	}
 	//âEà⁄ìÆëÄçÏ
-	if (CheckHitKey(KEY_INPUT_RIGHT) == 1)
+	if (Input::IsKeyDown(KEY_INPUT_RIGHT))
 	{
 		m_pos.x += m_speedX;
 	}
-
+	if (m_pos.x <= PLAYER_COLLISION_X / 2)
+		m_pos.x = PLAYER_COLLISION_X / 2;
+	if (m_pos.x >= SCREEN_SIZE_X - PLAYER_COLLISION_X / 2)
+		m_pos.x = SCREEN_SIZE_X - PLAYER_COLLISION_X / 2;
 }
 
 

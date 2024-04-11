@@ -38,7 +38,8 @@ void SceneManager::Main()
 		break;
 	}
 	case LOOP_PLAY: {
-		scene_play.LoopPlay();
+		scene_play.StepPlay();
+		scene_play.DrawPlay();
 		break;
 	}
 	case FIN_PLAY: {
