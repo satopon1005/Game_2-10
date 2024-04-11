@@ -2,6 +2,8 @@
 
 #include "DxLib.h"
 
+#define PI 3.141592653589793238
+
 //í∑Ç≥ÇÃç∑Çï‘Ç∑
 float GetDefLen_f(float pos_A, float pos_B);
 //Å‡

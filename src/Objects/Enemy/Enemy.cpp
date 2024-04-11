@@ -2,6 +2,8 @@
 #include "Dxlib.h"
 #include "../../Common.h"
 
+Bullet Enemy::bullet_info[ENEMY_BULLET_NUM];
+
 void Enemy::Init(int index_x, int index_y,int type_index)
 {
 	type = type_index;
@@ -15,10 +17,14 @@ void Enemy::Init(int index_x, int index_y,int type_index)
 	m_speed = ENEMY_SPEED;
 	m_hp = 1;
 	m_flg = true;
+
+	for (int i = 0; i < ENEMY_BULLET_NUM; i++)
+		bullet_info[i].Init();
 }
 
 void Enemy::Step() {
 	Move();
+	BulletMove();
 }
 
 void Enemy::Draw() {
@@ -27,10 +33,10 @@ void Enemy::Draw() {
 	//DrawCircle(m_pos.x, m_pos.y, 10, GetColor(0, 255, 0), true);
 
 	// •`‰æ
-	DrawExtendGraph(m_pos.x - 15,
-		m_pos.y - 10,
-		m_pos.x + 15,
-		m_pos.y + 10,
+	DrawExtendGraph((int)m_pos.x - 15,
+		(int)m_pos.y - 10,
+		(int)m_pos.x + 15,
+		(int)m_pos.y + 10,
 		m_handle,
 		true);
 }
@@ -56,6 +62,25 @@ void Enemy::Move()
 			m_pos.y += 10.0f;
 		}
 		m_pos.x += m_speed;
+	}
+}
+
+void Enemy::BulletShot(VECTOR pos)
+{
+	for (int i = 0; i < ENEMY_BULLET_NUM; i++){
+		if (!bullet_info[i].GetUseFlag()) {
+			bullet_info[i].Spawn(pos, VGet(0, BULLET_SPEED, 0));
+			return;
+		}
+	}
+}
+
+void Enemy::BulletMove()
+{
+	for (int i = 0; i < ENEMY_BULLET_NUM; i++){
+		if (bullet_info[i].GetUseFlag()) {
+			bullet_info[i].Step();
+		}
 	}
 }
 

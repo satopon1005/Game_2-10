@@ -23,8 +23,7 @@ public:
 	void Draw();
 	void Fin();
 
-	void SetPosX(float x) { m_pos.x = x; };	// Xç¿ïWê›íË
-	
-
+	VECTOR GetPos() { return m_pos; }
+	void SetPos(VECTOR vec) { m_pos = vec; };	//ç¿ïWê›íË
 };
 

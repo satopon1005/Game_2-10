@@ -45,6 +45,19 @@ void CountTime::StartCountTime()
 	m_count_time_flag = true;
 }
 
+bool CountTime::StepCountTimeUp()
+{
+	m_now_time = GetNowCount();
+
+	int elapsed_time = m_now_time - m_start_time;
+
+	if (elapsed_time >= 1000) {
+		m_start_time = m_now_time;
+		return true;
+	}
+	return false;
+}
+
 void CountTime::StepCountTimeDown()
 {
 	m_now_time = GetNowCount();
