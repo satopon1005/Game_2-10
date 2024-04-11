@@ -1,14 +1,10 @@
 #pragma once
 
-#define BULLET_HANDLE_PATH ("data/Enemy/enemybullet.jpg")
+#define BULLET_HANDLE_PATH ("data/Enemy/enemybullet.png")
 
-constexpr float BULLET_SPEED = 3.0f / 30.0f;
+constexpr float BULLET_SPEED = 5.0f / 30;
 
-enum BulletType
-{
-	ENEMY_TYPE,
-	PLAYER_TYPE,
-};
+constexpr int BULLET_COLLISION_R = 5;
 
 class Bullet
 {
@@ -18,7 +14,7 @@ private:
 	VECTOR m_vec;
 	double m_angle;
 	bool m_isUse;
-	int m_type;
+	bool m_isBound;
 
 public:
 	Bullet();
@@ -32,13 +28,15 @@ public:
 	void Spawn(VECTOR pos, VECTOR vec);
 	void Death();
 	void Move();
-	void MoveReflection(VECTOR pos);
 
 	bool GetUseFlag() { return m_isUse; }
 	VECTOR GetPos() { return m_pos; }
 	VECTOR GetVec() { return m_vec; }
 	void SetVec(VECTOR vec) { m_vec = vec; }
 
-	int GetType() { return m_type; }
-	void SetType(int type) { m_type = type; }
+	bool GetIsBound() { return m_isBound; }
+	void SetIsBound(bool bound) { m_isBound = bound; }
+
+	double GetAngle() { return m_angle; }
+	void SetAngle(double angle) { m_angle = angle; }
 };

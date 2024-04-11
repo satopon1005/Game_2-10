@@ -3,6 +3,9 @@
 #include "../../Common.h"
 
 Bullet Enemy::bullet_info[ENEMY_BULLET_NUM];
+//Šm—¦
+//–¢Š®¬
+float Enemy::m_bullet_spawn_probability;
 
 void Enemy::Init(int index_x, int index_y,int type_index)
 {
@@ -20,6 +23,8 @@ void Enemy::Init(int index_x, int index_y,int type_index)
 
 	for (int i = 0; i < ENEMY_BULLET_NUM; i++)
 		bullet_info[i].Init();
+
+	m_bullet_spawn_probability = ENEMY_BULLET_SPAWN_PROBABILITY;
 }
 
 void Enemy::Step() {
@@ -30,13 +35,13 @@ void Enemy::Step() {
 void Enemy::Draw() {
 
 	// test—p
-	//DrawCircle(m_pos.x, m_pos.y, 10, GetColor(0, 255, 0), true);
+	//DrawCircle(m_pos.x, m_pos.y, ENEMY_COLLISION_R, GetColor(0, 255, 0), false);
 
 	// •`‰æ
-	DrawExtendGraph((int)m_pos.x - 15,
-		(int)m_pos.y - 10,
-		(int)m_pos.x + 15,
-		(int)m_pos.y + 10,
+	DrawExtendGraph((int)m_pos.x - ENEMY_SIZE_X / 2,
+		(int)m_pos.y - ENEMY_SIZE_Y / 2,
+		(int)m_pos.x + ENEMY_SIZE_X / 2,
+		(int)m_pos.y + ENEMY_SIZE_Y / 2,
 		m_handle,
 		true);
 }
@@ -54,10 +59,12 @@ void Enemy::Move()
 {
 	if (m_flg) {
 		if (m_pos.x >= SCREEN_SIZE_X - ((ENEMY_NUM_X - m_enemy_index_x - 1) * 2 + 1) * ENEMY_COLLISION_R) {
+			//‰æ–Ê‰E‘¤‚É‚Â‚¢‚½‚çØ‚è‘Ö‚¦‚·
 			m_speed *= -1;
 			m_pos.y += 10.0f;
 		}
 		else if (m_pos.x <= (m_enemy_index_x * 2 + 1) * ENEMY_COLLISION_R) {
+			//‰æ–Ê¶‘¤‚É‚Â‚¢‚½‚çØ‚è‘Ö‚¦‚·
 			m_speed *= -1;
 			m_pos.y += 10.0f;
 		}
@@ -65,6 +72,7 @@ void Enemy::Move()
 	}
 }
 
+//’e‚Ì”­Ëˆ—
 void Enemy::BulletShot(VECTOR pos)
 {
 	for (int i = 0; i < ENEMY_BULLET_NUM; i++){

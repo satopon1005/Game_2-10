@@ -14,11 +14,16 @@ constexpr char ENEMY_PATH[5][128] = {
 constexpr int ENEMY_NUM_X = 7;
 constexpr int ENEMY_NUM_Y = 5;
 
-constexpr float ENEMY_COLLISION_R = 20;
+constexpr float ENEMY_COLLISION_R = 30;
+constexpr float ENEMY_SIZE_X = ENEMY_COLLISION_R * 3 / 2;
+constexpr float ENEMY_SIZE_Y = ENEMY_COLLISION_R;
 
 constexpr int ENEMY_BULLET_NUM = 30;
 
-constexpr float ENEMY_SPEED = 5.0f;
+constexpr float ENEMY_SPEED = 2.0f;
+
+//ìGÇÃíeÇÃî≠éÀÇÃèâä˙ämó¶
+constexpr int ENEMY_BULLET_SPAWN_PROBABILITY = 10;
 
 class Enemy
 {
@@ -35,6 +40,7 @@ private:
 	int m_enemy_index_y;
 
 	static Bullet bullet_info[ENEMY_BULLET_NUM];
+	static float m_bullet_spawn_probability;
 
 public:
 	void Init(int index_x, int index_y, int type_index);
@@ -45,15 +51,17 @@ public:
 	void Move();
 	void Death();
 
-	void BulletShot(VECTOR pos);
-	void BulletMove();
+	void BulletShot(VECTOR pos);	//íeÇÃî≠éÀèàóù
+	void BulletMove();				//íeÇÃà⁄ìÆ
 
 	VECTOR GetPos() { return m_pos; };	//ç¿ïWéÊìæ
-	Bullet GetBulletInfo(int index) { return bullet_info[index]; }
-	Bullet& GeRefeBulletInfo(int index) { return bullet_info[index]; }
+	Bullet& GetRefeBulletInfo(int index) { return bullet_info[index]; }
 
 	void SetPosX(float x) { m_pos.x = x; };	// Xç¿ïWê›íË
 	void SetPosY(float y) { m_pos.y = y; };	// Yç¿ïWê›íË
 
 	bool GetUseFlag() { return m_flg; }
+
+	float GetBulletSpawnProbability() { return m_bullet_spawn_probability; }
+	void SetBulletSpawnProbability(int num) { m_bullet_spawn_probability = num; }
 };

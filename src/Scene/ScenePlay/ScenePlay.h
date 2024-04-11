@@ -4,7 +4,7 @@
 #include "../../Objects/Enemy/Enemy.h"
 #include "../../CountTime/CountTime.h"
 
-constexpr int enemy_type[ENEMY_NUM_Y][ENEMY_NUM_X] = {
+constexpr int ENEMY_TYPE[ENEMY_NUM_Y][ENEMY_NUM_X] = {
 	{0,0,0,0,0,0,0},
 	{1,1,1,1,1,1,1},
 	{2,2,2,2,2,2,2},

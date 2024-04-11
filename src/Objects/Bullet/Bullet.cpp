@@ -10,7 +10,7 @@ Bullet::Bullet()
 	m_vec = { 0 };
 	m_angle = 0;
 	m_isUse = 0;
-	m_type = 0;
+	m_isBound = 0;
 }
 Bullet::~Bullet()
 {
@@ -23,9 +23,9 @@ void Bullet::Init()
 	m_handle = LoadGraph(BULLET_HANDLE_PATH);
 	m_pos = { 0 };
 	m_vec = { 0 };
-	m_angle = 0.0;
+	m_angle = PI / 2;
 	m_isUse = false;
-	m_type = ENEMY_TYPE;
+	m_isBound = false;
 }
 
 void Bullet::Step()
@@ -39,11 +39,20 @@ void Bullet::Step()
 		if (m_pos.x <= 0) {
 			m_pos.x = 0;
 			m_vec.x *= -1;
+
+			m_angle = (double)AngleOf2Vector(VGet(1, 0, 0), m_vec);
+			if (m_vec.y < 0)
+				m_angle = PI * 2 - m_angle;
 		}
 		if (m_pos.x >= SCREEN_SIZE_X) {
 			m_pos.x = SCREEN_SIZE_X;
 			m_vec.x *= -1;
+
+			m_angle = (double)AngleOf2Vector(VGet(1, 0, 0), m_vec);
+			if (m_vec.y < 0)
+				m_angle = PI * 2 - m_angle;
 		}
+
 		//ã‰º‚¾‚ÆÁ‚·
 		if (m_pos.y <= 0 ||
 			m_pos.y >= SCREEN_SIZE_Y) {
@@ -55,9 +64,8 @@ void Bullet::Step()
 void Bullet::Draw()
 {
 	if (m_isUse) {
-		DrawRotaGraph((int)m_pos.x, (int)m_pos.y, 1.0, m_angle, m_handle, false);
-
-		DrawCircle((int)m_pos.x, (int)m_pos.y, 3, GetColor(0, 255, 0), true);
+		//DrawCircle((int)m_pos.x, (int)m_pos.y, BULLET_COLLISION_R, GetColor(0, 255, 0), false);
+		DrawRotaGraph((int)m_pos.x, (int)m_pos.y, 1.0, m_angle, m_handle, true);
 	}
 }
 
@@ -79,7 +87,7 @@ void Bullet::Spawn(VECTOR pos, VECTOR vec)
 		m_angle = (double)AngleOf2Vector(VGet(1, 0, 0), m_vec);
 		if (m_vec.y < 0)
 			m_angle = PI * 2 - m_angle;
-		m_type = ENEMY_TYPE;
+		m_isBound = false;
 		m_isUse = true;
 	}
 }
@@ -93,9 +101,4 @@ void Bullet::Move()
 {
 	m_pos.x += m_vec.x;
 	m_pos.y += m_vec.y;
-}
-
-void Bullet::MoveReflection(VECTOR pos)
-{
-	m_vec = GetVector(pos, m_pos, BULLET_SPEED);
 }
