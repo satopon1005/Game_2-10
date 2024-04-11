@@ -1,22 +1,13 @@
 #include "Player.h"
 #include "DxLib.h"
 
-
-
-
-int bgPlay;
-bool isNextPlay = false;
-
-
 void PlayerInfo::Init() {
 
-	bgPlay = LoadGraph(PLAYER_PATH);
-
-	handle = LoadGraph(PLAYER_PATH);
-	posX = 500;
-	posY = 200;
-	speedX = 2.0f;
-	isUse = true;
+	m_handle = LoadGraph(PLAYER_PATH);
+	m_pos.x = 500;
+	m_pos.y = 200;
+	m_speedX = 2.0f;
+	m_isUse = true;
 
 }
 
@@ -25,33 +16,26 @@ void PlayerInfo::Step() {
 	//ç∂à⁄ìÆëÄçÏ
 	if (CheckHitKey(KEY_INPUT_LEFT) == 1)
 	{
-		posX -= speedX;
+		m_pos.x -= m_speedX;
 	}
 	//âEà⁄ìÆëÄçÏ
 	if (CheckHitKey(KEY_INPUT_RIGHT) == 1)
 	{
-		posX += speedX;
+		m_pos.x += m_speedX;
 	}
 
 }
 
 
 void PlayerInfo::Draw() {
-
-	
 	// ï`âÊ
-	DrawGraph(posX, posX, handle, true);
+	DrawGraph(m_pos.x, m_pos.y, m_handle, true);
 }
 
 
 void PlayerInfo::Fin() {
 
-	posX = 100.0f;
-	posY = 100.0f;
-	isUse = true;
-}
-
-
-void PlayerInfo::SetPosX(float x) {
-	posX = x;
+	m_pos.x = 100.0f;
+	m_pos.y = 100.0f;
+	m_isUse = true;
 }
