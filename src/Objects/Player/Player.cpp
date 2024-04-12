@@ -34,10 +34,10 @@ void PlayerInfo::Step() {
 
 void PlayerInfo::Draw() {
 	// •`‰æ
-	DrawExtendGraph(m_pos.x - PLAYER_COLLISION_X / 2,
-		m_pos.y - PLAYER_COLLISION_Y / 2,
-		m_pos.x + PLAYER_COLLISION_X / 2,
-		m_pos.y + PLAYER_COLLISION_Y / 2,
+	DrawExtendGraph((int)(m_pos.x - PLAYER_COLLISION_X / 2),
+		(int)(m_pos.y - PLAYER_COLLISION_Y / 2),
+		(int)(m_pos.x + PLAYER_COLLISION_X / 2),
+		(int)(m_pos.y + PLAYER_COLLISION_Y / 2),
 		m_handle,
 		true);
 }

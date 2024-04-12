@@ -62,6 +62,7 @@ public:
 
 	bool GetUseFlag() { return m_flg; }
 
+	//スポーンの確率
 	float GetBulletSpawnProbability() { return m_bullet_spawn_probability; }
-	void SetBulletSpawnProbability(int num) { m_bullet_spawn_probability = num; }
+	void SetBulletSpawnProbability(float num) { m_bullet_spawn_probability = num; }
 };

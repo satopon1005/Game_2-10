@@ -28,7 +28,7 @@ void Bullet::Init()
 	m_isBound = false;
 }
 
-void Bullet::Step()
+void Bullet::Step(bool Switch)
 {
 	//Žg—p’†‚È‚ç
 	if (m_isUse) {
@@ -52,12 +52,22 @@ void Bullet::Step()
 			if (m_vec.y < 0)
 				m_angle = PI * 2 - m_angle;
 		}
+		if(Switch)
+			//ˆø”‚ªtrue‚¾‚Æã‚Å’µ‚Ë•Ô‚·
+			if (m_pos.y <= 0) {
+				m_pos.y = 0;
+				m_vec.y *= -1;
 
-		//ã‰º‚¾‚ÆÁ‚·
-		if (m_pos.y <= 0 ||
-			m_pos.y >= SCREEN_SIZE_Y) {
-			Death();
-		}
+				m_angle = (double)AngleOf2Vector(VGet(1, 0, 0), m_vec);
+				if (m_vec.y < 0)
+					m_angle = PI * 2 - m_angle;
+			}
+		else
+			//ã‰º‚¾‚ÆÁ‚·
+			if (m_pos.y <= 0 ||
+				m_pos.y >= SCREEN_SIZE_Y) {
+				Death();
+			}
 	}
 }
 

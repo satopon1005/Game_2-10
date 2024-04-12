@@ -38,10 +38,10 @@ void Enemy::Draw() {
 	//DrawCircle(m_pos.x, m_pos.y, ENEMY_COLLISION_R, GetColor(0, 255, 0), false);
 
 	// •`‰æ
-	DrawExtendGraph((int)m_pos.x - ENEMY_SIZE_X / 2,
-		(int)m_pos.y - ENEMY_SIZE_Y / 2,
-		(int)m_pos.x + ENEMY_SIZE_X / 2,
-		(int)m_pos.y + ENEMY_SIZE_Y / 2,
+	DrawExtendGraph((int)(m_pos.x - ENEMY_SIZE_X / 2),
+		(int)(m_pos.y - ENEMY_SIZE_Y / 2),
+		(int)(m_pos.x + ENEMY_SIZE_X / 2),
+		(int)(m_pos.y + ENEMY_SIZE_Y / 2),
 		m_handle,
 		true);
 }

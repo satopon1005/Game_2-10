@@ -21,7 +21,7 @@ public:
 	~Bullet();
 
 	void Init();
-	void Step();
+	void Step(bool Switch = false);
 	void Draw();
 	void Fin();
 
