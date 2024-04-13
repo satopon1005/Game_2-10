@@ -65,7 +65,7 @@ public:
 
 	//スポーンの確率
 	int GetBulletSpawnProbability() { return m_bullet_spawn_probability; }
-	void SetBulletSpawnProbability(float num) { m_bullet_spawn_probability = num; }
+	void SetBulletSpawnProbability(int num) { m_bullet_spawn_probability = num; }
 	//スポーンの確率変動
 	void ChangeSpawnProbability(int num);
 };
