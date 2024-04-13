@@ -17,6 +17,9 @@ void ScenePlay::InitPlay()
 
 void ScenePlay::StepPlay()
 {
+	pre_enemy_alive_num = enemy_alive_num;
+	enemy_alive_num = 0;
+
 	player_info.Step();
 	for (int y_index = 0; y_index < ENEMY_NUM_Y; y_index++) {
 		for (int x_index = 0; x_index < ENEMY_NUM_X; x_index++) {
@@ -31,8 +34,16 @@ void ScenePlay::StepPlay()
 				//“G‚Æ’e‚Ì“–‚½‚è”»’è
 				CollisionEnemyToBullet(enemy_info[y_index][x_index], hypothetical_bullet);
 			}
+			if (enemy_info[y_index][x_index].GetUseFlag())
+				enemy_alive_num++;
 		}
 	}
+
+	//“G‚ÌƒXƒ|[ƒ“Šm—¦•Ï“®
+	if (enemy_alive_num != pre_enemy_alive_num && enemy_alive_num % ENEMY_CHANGE_SPAWN_PROBABILITY_NUM == 0) {
+		enemy_info[0][0].ChangeSpawnProbability(enemy_info[0][0].GetBulletSpawnProbability() - 1);
+	}
+	int probability = enemy_info[0][0].GetBulletSpawnProbability();
 	
 	if (count_time.StepCountTimeUp()) {
 		for (int y_index = 0; y_index < ENEMY_NUM_Y; y_index++) {

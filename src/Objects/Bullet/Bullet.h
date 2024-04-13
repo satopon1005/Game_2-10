@@ -2,6 +2,7 @@
 
 #define BULLET_HANDLE_PATH ("data/Enemy/enemybullet.png")
 
+//									  Å´ENEMY_NUM_X * ENEMY_NUM_Y(Enemy.h)
 constexpr float BULLET_SPEED = 5.0f / 30;
 
 constexpr int BULLET_COLLISION_R = 5;
@@ -25,7 +26,7 @@ public:
 	void Draw();
 	void Fin();
 
-	void Spawn(VECTOR pos, VECTOR vec);
+	void Spawn(VECTOR pos, VECTOR vec, int rand_num);
 	void Death();
 	void Move();
 

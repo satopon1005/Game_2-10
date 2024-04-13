@@ -11,6 +11,7 @@ constexpr char ENEMY_PATH[5][128] = {
 	{"data/Enemy/enemy5.png"},
 };
 
+//ここを変えたらBullel.hの一部を変える
 constexpr int ENEMY_NUM_X = 7;
 constexpr int ENEMY_NUM_Y = 5;
 
@@ -23,7 +24,7 @@ constexpr int ENEMY_BULLET_NUM = 30;
 constexpr float ENEMY_SPEED = 2.0f;
 
 //敵の弾の発射の初期確率
-constexpr int ENEMY_BULLET_SPAWN_PROBABILITY = 10;
+constexpr int ENEMY_BULLET_SPAWN_PROBABILITY = 20;
 
 class Enemy
 {
@@ -40,7 +41,7 @@ private:
 	int m_enemy_index_y;
 
 	static Bullet bullet_info[ENEMY_BULLET_NUM];
-	static float m_bullet_spawn_probability;
+	static int m_bullet_spawn_probability;
 
 public:
 	void Init(int index_x, int index_y, int type_index);
@@ -63,6 +64,8 @@ public:
 	bool GetUseFlag() { return m_flg; }
 
 	//スポーンの確率
-	float GetBulletSpawnProbability() { return m_bullet_spawn_probability; }
+	int GetBulletSpawnProbability() { return m_bullet_spawn_probability; }
 	void SetBulletSpawnProbability(float num) { m_bullet_spawn_probability = num; }
+	//スポーンの確率変動
+	void ChangeSpawnProbability(int num);
 };

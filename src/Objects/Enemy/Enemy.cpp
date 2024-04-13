@@ -5,7 +5,7 @@
 Bullet Enemy::bullet_info[ENEMY_BULLET_NUM];
 //Šm—¦
 //–¢Š®¬
-float Enemy::m_bullet_spawn_probability;
+int Enemy::m_bullet_spawn_probability;
 
 void Enemy::Init(int index_x, int index_y,int type_index)
 {
@@ -54,7 +54,7 @@ void Enemy::Fin() {
 	m_flg = true;
 }
 
-
+//“G‚ÌˆÚ“®ˆ—
 void Enemy::Move()
 {
 	if (m_flg) {
@@ -77,12 +77,13 @@ void Enemy::BulletShot(VECTOR pos)
 {
 	for (int i = 0; i < ENEMY_BULLET_NUM; i++){
 		if (!bullet_info[i].GetUseFlag()) {
-			bullet_info[i].Spawn(pos, VGet(0, BULLET_SPEED, 0));
+			bullet_info[i].Spawn(pos, VGet(0, BULLET_SPEED, 0), m_bullet_spawn_probability);
 			return;
 		}
 	}
 }
 
+//’e‚ÌˆÚ“®ˆ—
 void Enemy::BulletMove()
 {
 	for (int i = 0; i < ENEMY_BULLET_NUM; i++){
@@ -92,7 +93,14 @@ void Enemy::BulletMove()
 	}
 }
 
+//“G‚Ì€–Sˆ—
 void Enemy::Death()
 {
 	m_flg = false;
+}
+
+//“G‚ÌƒXƒ|[ƒ“Šm—¦•Ï“®
+void Enemy::ChangeSpawnProbability(int num)
+{
+	m_bullet_spawn_probability = num;
 }

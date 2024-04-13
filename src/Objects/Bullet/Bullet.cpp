@@ -52,7 +52,8 @@ void Bullet::Step(bool Switch)
 			if (m_vec.y < 0)
 				m_angle = PI * 2 - m_angle;
 		}
-		if(Switch)
+
+		if (Switch) {
 			//ˆø”‚ªtrue‚¾‚Æã‚Å’µ‚Ë•Ô‚·
 			if (m_pos.y <= 0) {
 				m_pos.y = 0;
@@ -62,12 +63,14 @@ void Bullet::Step(bool Switch)
 				if (m_vec.y < 0)
 					m_angle = PI * 2 - m_angle;
 			}
-		else
+		}
+		else {
 			//ã‰º‚¾‚ÆÁ‚·
 			if (m_pos.y <= 0 ||
 				m_pos.y >= SCREEN_SIZE_Y) {
 				Death();
 			}
+		}
 	}
 }
 
@@ -85,9 +88,9 @@ void Bullet::Fin()
 }
 
 
-void Bullet::Spawn(VECTOR pos, VECTOR vec)
+void Bullet::Spawn(VECTOR pos, VECTOR vec, int rand_num)
 {
-	int random_num = GetRand(10);
+	int random_num = GetRand(rand_num);
 	if (random_num != 0)
 		return;
 
