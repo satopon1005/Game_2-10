@@ -57,6 +57,11 @@ void ScenePlay::StepPlay()
 	}
 }
 
+void ScenePlay::StartStepPlay()
+{
+	player_info.VecMove();
+}
+
 void ScenePlay::DrawPlay()
 {
 	for (int y_index = 0; y_index < ENEMY_NUM_Y; y_index++) {

@@ -29,4 +29,8 @@ public:
 	void StepPlay();
 	void DrawPlay();
 	void FinPlay();
+
+	void StartStepPlay();
+
+	PlayerInfo& GetPlayerInfo() { return player_info; }
 };

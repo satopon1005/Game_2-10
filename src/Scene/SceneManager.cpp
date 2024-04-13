@@ -39,7 +39,11 @@ void SceneManager::Main()
 		break;
 	}
 	case LOOP_PLAY: {
-		scene_play.StepPlay();
+		if (scene_play.GetPlayerInfo().GetBulletShotFlag())
+			scene_play.StepPlay();
+		else
+			scene_play.StartStepPlay();
+
 		scene_play.DrawPlay();
 		break;
 	}
