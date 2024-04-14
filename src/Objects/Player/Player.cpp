@@ -4,6 +4,23 @@
 #include "../../Input/Input.h"
 #include "../../MyMath/MyMath.h"
 
+PlayerInfo::PlayerInfo()
+{
+	m_handle = 0;					//ハンドル
+	m_bullet_vec_handle = 0;		//ハンドル
+
+	m_pos = { 0 };					//座標
+	m_speedX = 0;					//移動速度
+	m_isUse = 0;					//使用中フラグ
+
+	bullet_vec = { 0 };
+	bullet_start_angle = 0;
+}
+PlayerInfo::~PlayerInfo()
+{
+	Fin();
+}
+
 void PlayerInfo::Init() {
 
 	m_handle = LoadGraph(PLAYER_PATH);
@@ -26,10 +43,6 @@ void PlayerInfo::Step() {
 
 void PlayerInfo::Draw() {
 	// 描画
-	if (!bullet_info.GetUseFlag()) {
-		DrawRotaGraph2((int)(m_pos.x), (int)(m_pos.y - 10), 0, 100, 0.3, bullet_start_angle, m_bullet_vec_handle, true);
-	}
-
 	bullet_info.Draw();
 
 	DrawExtendGraph((int)(m_pos.x - PLAYER_COLLISION_X / 2),
@@ -38,6 +51,13 @@ void PlayerInfo::Draw() {
 		(int)(m_pos.y + PLAYER_COLLISION_Y / 2),
 		m_handle,
 		true);
+}
+
+void PlayerInfo::DrawAllow()
+{
+	if (!bullet_info.GetUseFlag()) {
+		DrawRotaGraph2((int)(m_pos.x), (int)(m_pos.y - 10), 0, 100, 0.3, bullet_start_angle, m_bullet_vec_handle, true);
+	}
 }
 
 

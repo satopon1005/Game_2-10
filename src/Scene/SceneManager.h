@@ -1,6 +1,9 @@
 #pragma once
 
+#include "SceneTitle/SceneTitle.h"
 #include "ScenePlay/ScenePlay.h"
+#include "SceneClear/SceneClear.h"
+#include "SceneGameOver/SceneGameOver.h"
 
 enum SCENE_TYPE
 {
@@ -26,7 +29,11 @@ class SceneManager
 private:
 	int m_current_scene_ID;
 
+	SceneTitle scene_title;
 	ScenePlay scene_play;
+	SceneClear scene_clear;
+	SceneGameOver scene_gameover;
+
 public:
 	SceneManager();
 	~SceneManager();

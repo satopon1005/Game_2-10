@@ -47,6 +47,9 @@ private:
 	static int m_bullet_spawn_probability;
 
 public:
+	Enemy();
+	~Enemy();
+
 	void Init(int index_x, int index_y, int type_index);
 	void Step();
 	void Draw();

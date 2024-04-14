@@ -28,10 +28,15 @@ private:
 	float bullet_start_angle;
 
 public:
+	PlayerInfo();
+	~PlayerInfo();
+
 	void Init();
 	void Step();
 	void Draw();
 	void Fin();
+
+	void DrawAllow();
 
 	void Move();
 	void VecMove();

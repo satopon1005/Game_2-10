@@ -7,6 +7,24 @@ Bullet Enemy::bullet_info[ENEMY_BULLET_NUM];
 //未完成
 int Enemy::m_bullet_spawn_probability;
 
+Enemy::Enemy()
+{
+	m_handle = 0;			// ハンドル
+	m_pos = { 0 };			// 座標
+	m_speed = 0;			// 移動速度
+	m_hp = 0;				// 体力
+	m_flg = 0;				// 生存フラグ
+	m_turn = 0;				// 移動方向変更
+
+	type = 0;
+	m_enemy_index_x = 0;
+	m_enemy_index_y = 0;
+}
+Enemy::~Enemy()
+{
+
+}
+
 void Enemy::Init(int index_x, int index_y,int type_index)
 {
 	type = type_index;
