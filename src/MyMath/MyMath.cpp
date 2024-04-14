@@ -171,6 +171,15 @@ float AngleOf2Vector(VECTOR vec1, VECTOR vec2,bool degree_switch)
 	return (float)sita;
 }
 
+//角度からベクトル
+VECTOR GetVecFromAngle2D(float angle, float speed)
+{
+	float vec_x = cosf(angle);
+	float vec_y = sinf(angle);
+
+	return VGet(vec_x * speed, vec_y * speed, 0.0f);
+}
+
 //２点間の距離
 float GetDistance(VECTOR pos1, VECTOR pos2)
 {

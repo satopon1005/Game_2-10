@@ -22,7 +22,7 @@ void Enemy::Init(int index_x, int index_y,int type_index)
 	m_flg = true;
 
 	for (int i = 0; i < ENEMY_BULLET_NUM; i++)
-		bullet_info[i].Init();
+		bullet_info[i].Init(BULLET_HANDLE_PATH, ENEMY_BULLET_SPEED);
 
 	m_bullet_spawn_probability = ENEMY_BULLET_SPAWN_PROBABILITY;
 }
@@ -77,7 +77,7 @@ void Enemy::BulletShot(VECTOR pos)
 {
 	for (int i = 0; i < ENEMY_BULLET_NUM; i++){
 		if (!bullet_info[i].GetUseFlag()) {
-			bullet_info[i].Spawn(pos, VGet(0, BULLET_SPEED, 0), m_bullet_spawn_probability);
+			bullet_info[i].Spawn(pos, VGet(0, 1.0f, 0), m_bullet_spawn_probability);
 			return;
 		}
 	}

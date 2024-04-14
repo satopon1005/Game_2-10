@@ -12,20 +12,23 @@ void CollisionPlayerToBullet(VECTOR player_pos, Bullet& bullet_info)
 									player_pos.y - PLAYER_COLLISION_Y / 2,
 									PLAYER_COLLISION_X,
 									PLAYER_COLLISION_Y)) {
-		VECTOR player_to_bullet_vec = GetVector(player_pos, bullet_info.GetPos(), BULLET_SPEED);
+		//プレイヤーから弾へのベクトル
+		VECTOR player_to_bullet_vec = GetVector(player_pos, bullet_info.GetPos(), bullet_info.GetSpeed());
 
 		bullet_info.SetVec(player_to_bullet_vec);
 
 		bullet_info.SetIsBound(true);
 
 		double angle=AngleOf2Vector(VGet(1, 0, 0), player_to_bullet_vec);
+		//角度が180度以上のとき
 		if (player_to_bullet_vec.y < 0)
 			angle = PI * 2 - angle;
+
 		bullet_info.SetAngle(angle);
 	}
 }
 
-void CollisionEnemyToBullet(Enemy& enemy_info, Bullet& bullet_info)
+void CollisionEnemyToBullet(Enemy& enemy_info, Bullet& bullet_info, bool Switch)
 {
 
 	if (!bullet_info.GetIsBound())
@@ -41,6 +44,22 @@ void CollisionEnemyToBullet(Enemy& enemy_info, Bullet& bullet_info)
 								bullet_info.GetPos().y,
 								BULLET_COLLISION_R)) {
 		enemy_info.Death();
-		bullet_info.Death();
+		if (!Switch)
+			bullet_info.Death();
+		else {
+			//敵から弾へのベクトル
+			VECTOR enemy_to_bullet_vec = GetVector(enemy_info.GetPos(), bullet_info.GetPos(), bullet_info.GetSpeed());
+
+			bullet_info.SetVec(enemy_to_bullet_vec);
+
+			bullet_info.SetIsBound(true);
+
+			double angle = AngleOf2Vector(VGet(1, 0, 0), enemy_to_bullet_vec);
+			//角度が180度以上のとき
+			if (enemy_to_bullet_vec.y < 0)
+				angle = PI * 2 - angle;
+
+			bullet_info.SetAngle(angle);
+		}
 	}
 }

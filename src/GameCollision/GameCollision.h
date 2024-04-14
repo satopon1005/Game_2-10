@@ -6,4 +6,4 @@
 
 void CollisionPlayerToBullet(VECTOR player_pos, Bullet& bullet_info);
 
-void CollisionEnemyToBullet(Enemy& enemy_info, Bullet& bullet_info);
+void CollisionEnemyToBullet(Enemy& enemy_info, Bullet& bullet_info, bool Switch = false);

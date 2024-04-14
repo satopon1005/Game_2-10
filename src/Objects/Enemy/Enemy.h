@@ -3,6 +3,8 @@
 #include "DxLib.h"
 #include "../Bullet/Bullet.h"
 
+constexpr char BULLET_HANDLE_PATH[] = { "data/Enemy/enemybullet.png" };
+
 constexpr char ENEMY_PATH[5][128] = {
 	{"data/Enemy/enemy1.png"},
 	{"data/Enemy/enemy2.png"},
@@ -22,6 +24,7 @@ constexpr float ENEMY_SIZE_Y = ENEMY_COLLISION_R;
 constexpr int ENEMY_BULLET_NUM = 30;
 
 constexpr float ENEMY_SPEED = 2.0f;
+constexpr float ENEMY_BULLET_SPEED = 5.0f / (ENEMY_NUM_X * ENEMY_NUM_Y);
 
 //ìGÇÃíeÇÃî≠éÀÇÃèâä˙ämó¶
 constexpr int ENEMY_BULLET_SPAWN_PROBABILITY = 20;

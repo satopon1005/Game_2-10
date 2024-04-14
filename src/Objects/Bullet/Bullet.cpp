@@ -18,14 +18,15 @@ Bullet::~Bullet()
 }
 
 
-void Bullet::Init()
+void Bullet::Init(const char* handle_path, float speed, bool Switch)
 {
-	m_handle = LoadGraph(BULLET_HANDLE_PATH);
+	m_handle = LoadGraph(handle_path);
 	m_pos = { 0 };
 	m_vec = { 0 };
+	m_speed = speed;
 	m_angle = PI / 2;
 	m_isUse = false;
-	m_isBound = false;
+	m_isBound = Switch;
 }
 
 void Bullet::Step(bool Switch)
@@ -96,7 +97,7 @@ void Bullet::Spawn(VECTOR pos, VECTOR vec, int rand_num)
 
 	if (!m_isUse) {
 		m_pos = pos;
-		m_vec = GetVector(vec, BULLET_SPEED);
+		m_vec = GetVector(vec, m_speed);
 		m_angle = (double)AngleOf2Vector(VGet(1, 0, 0), m_vec);
 		if (m_vec.y < 0)
 			m_angle = PI * 2 - m_angle;

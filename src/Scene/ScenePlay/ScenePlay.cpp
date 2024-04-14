@@ -21,6 +21,11 @@ void ScenePlay::StepPlay()
 	enemy_alive_num = 0;
 
 	player_info.Step();
+	player_info.BulletMove();
+
+	//プレイヤーとプレイヤーの弾の当たり判定
+	CollisionPlayerToBullet(player_info.GetPos(), player_info.GetBulletInfo());
+
 	for (int y_index = 0; y_index < ENEMY_NUM_Y; y_index++) {
 		for (int x_index = 0; x_index < ENEMY_NUM_X; x_index++) {
 			enemy_info[y_index][x_index].Step();
@@ -34,6 +39,11 @@ void ScenePlay::StepPlay()
 				//敵と弾の当たり判定
 				CollisionEnemyToBullet(enemy_info[y_index][x_index], hypothetical_bullet);
 			}
+
+			//敵とプレイヤーの弾の当たり判定
+			CollisionEnemyToBullet(enemy_info[y_index][x_index], player_info.GetBulletInfo(),true);
+
+			//敵の残りの数を取得
 			if (enemy_info[y_index][x_index].GetUseFlag())
 				enemy_alive_num++;
 		}
@@ -60,6 +70,7 @@ void ScenePlay::StepPlay()
 void ScenePlay::StartStepPlay()
 {
 	player_info.VecMove();
+	player_info.BulletShot();
 }
 
 void ScenePlay::DrawPlay()

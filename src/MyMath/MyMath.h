@@ -42,6 +42,9 @@ VECTOR VecCross(VECTOR vec1, VECTOR vec2);
 //ベクトルのなす角
 float AngleOf2Vector(VECTOR vec1, VECTOR vec2, bool degree_switch = false);
 
+//角度からベクトル
+VECTOR GetVecFromAngle2D(float angle, float speed = 1.0f);
+
 //２点間の距離
 float GetDistance(VECTOR pos1, VECTOR pos2);
 

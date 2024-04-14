@@ -11,12 +11,12 @@ constexpr int PLAYER_COLLISION_X = 100;
 constexpr int PLAYER_COLLISION_Y = 15;
 
 constexpr float PLAYER_SPEED = 5;
+constexpr float PLAYER_BULLET_SPEED = 5.0f;
 
 class PlayerInfo
 {
 private:
 	int m_handle;					//ハンドル
-	int m_bullet_handle;			//ハンドル
 	int m_bullet_vec_handle;		//ハンドル
 
 	VECTOR m_pos;	//座標
@@ -24,8 +24,8 @@ private:
 	bool m_isUse;     //使用中フラグ
 
 	Bullet bullet_info;
-	float bullet_start_vec;
-	bool bullet_shot_flag;
+	VECTOR bullet_vec;
+	float bullet_start_angle;
 
 public:
 	void Init();
@@ -39,6 +39,9 @@ public:
 	VECTOR GetPos() { return m_pos; }
 	void SetPos(VECTOR vec) { m_pos = vec; };	//座標設定
 
-	bool GetBulletShotFlag() { return bullet_shot_flag; }
+	Bullet& GetBulletInfo() { return bullet_info; }
+	bool GetBulletShotFlag() { return bullet_info.GetUseFlag(); }
+	void BulletShot();
+	void BulletMove();
 };
 
