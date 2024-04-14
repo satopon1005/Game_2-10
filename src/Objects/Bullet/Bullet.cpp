@@ -9,6 +9,7 @@ Bullet::Bullet()
 	m_pos = { 0 };
 	m_vec = { 0 };
 	m_angle = 0;
+	m_speed = 0;
 	m_isUse = 0;
 	m_isBound = 0;
 }
@@ -64,6 +65,10 @@ void Bullet::Step(bool Switch)
 				if (m_vec.y < 0)
 					m_angle = PI * 2 - m_angle;
 			}
+			//â∫ÇæÇ∆è¡Ç∑
+			if (m_pos.y >= SCREEN_SIZE_Y) {
+				Death();
+			}
 		}
 		else {
 			//è„â∫ÇæÇ∆è¡Ç∑
@@ -89,7 +94,7 @@ void Bullet::Fin()
 }
 
 
-void Bullet::Spawn(VECTOR pos, VECTOR vec, int rand_num)
+void Bullet::Spawn(VECTOR pos, VECTOR vec, int rand_num, bool flag)
 {
 	int random_num = GetRand(rand_num);
 	if (random_num != 0)
@@ -101,7 +106,7 @@ void Bullet::Spawn(VECTOR pos, VECTOR vec, int rand_num)
 		m_angle = (double)AngleOf2Vector(VGet(1, 0, 0), m_vec);
 		if (m_vec.y < 0)
 			m_angle = PI * 2 - m_angle;
-		m_isBound = false;
+		m_isBound = flag;
 		m_isUse = true;
 	}
 }

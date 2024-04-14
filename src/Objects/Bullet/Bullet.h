@@ -22,7 +22,7 @@ public:
 	void Draw();
 	void Fin();
 
-	void Spawn(VECTOR pos, VECTOR vec, int rand_num = 0);
+	void Spawn(VECTOR pos, VECTOR vec, int rand_num = 0, bool flag = false);
 	void Death();
 	void Move();
 

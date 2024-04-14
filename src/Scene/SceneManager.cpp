@@ -39,8 +39,16 @@ void SceneManager::Main()
 		break;
 	}
 	case LOOP_PLAY: {
-		if (scene_play.GetPlayerInfo().GetBulletShotFlag())
+		if (scene_play.GetPlayerInfo().GetBulletInfo().GetUseFlag()) {
 			scene_play.StepPlay();
+
+			if (!scene_play.GetPlayerInfo().GetBulletInfo().GetUseFlag()) {
+				m_current_scene_ID = INIT_GAMEOVER;
+			}
+			if (scene_play.GetEnemyAliveNum() == 0) {
+				m_current_scene_ID = INIT_CLEAR;
+			}
+		}
 		else {
 			scene_play.StartStepPlay();
 		}

@@ -40,7 +40,6 @@ public:
 	void SetPos(VECTOR vec) { m_pos = vec; };	//ç¿ïWê›íË
 
 	Bullet& GetBulletInfo() { return bullet_info; }
-	bool GetBulletShotFlag() { return bullet_info.GetUseFlag(); }
 	void BulletShot();
 	void BulletMove();
 };

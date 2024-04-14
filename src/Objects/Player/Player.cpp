@@ -87,7 +87,7 @@ void PlayerInfo::BulletShot()
 {
 	if (Input::IsKeyPush(KEY_INPUT_RETURN))
 	{
-		bullet_info.Spawn(VGet(m_pos.x, m_pos.y - 10, m_pos.z), GetVecFromAngle2D(bullet_start_angle));
+		bullet_info.Spawn(VGet(m_pos.x, m_pos.y - 10, m_pos.z), GetVecFromAngle2D(bullet_start_angle), 0, true);
 	}
 }
 void PlayerInfo::BulletMove()
