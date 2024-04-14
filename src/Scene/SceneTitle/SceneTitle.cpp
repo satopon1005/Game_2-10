@@ -12,7 +12,7 @@ void SceneTitle::Init()
 bool SceneTitle::Step()
 {
 
-	DrawGraph(0, 0, Titlehandle, true);
+	DrawGraph(0, 0, bg_handle, true);
 
 	//100‰ñ‚Ì‚¤‚¿20‰ñ•\¦‚·‚é(“_–Åˆ—)
 	static int count = 0;
