@@ -13,6 +13,9 @@ void ScenePlay::InitPlay()
 	}
 	count_time.InitCountTime();
 	count_time.StartCountTime();
+
+	score = 0;
+	score_magnification = 0;
 }
 
 void ScenePlay::StepPlay()
@@ -25,7 +28,9 @@ void ScenePlay::StepPlay()
 	player_info.BulletMove();
 
 	//プレイヤーとプレイヤーの弾の当たり判定
-	CollisionPlayerToBullet(player_info.GetPos(), player_info.GetBulletInfo());
+	if (CollisionPlayerToBullet(player_info.GetPos(), player_info.GetBulletInfo()))
+		//スコア倍率を戻す
+		score_magnification = 0;
 
 	for (int y_index = 0; y_index < ENEMY_NUM_Y; y_index++) {
 		for (int x_index = 0; x_index < ENEMY_NUM_X; x_index++) {
@@ -35,14 +40,20 @@ void ScenePlay::StepPlay()
 				Bullet& hypothetical_bullet = enemy_info[y_index][x_index].GetRefeBulletInfo(bullet_index);
 				
 				//プレイヤーと弾の当たり判定
-				CollisionPlayerToBullet(player_info.GetPos(), hypothetical_bullet);
+				if (CollisionPlayerToBullet(player_info.GetPos(), hypothetical_bullet))
+					//スコア倍率UP
+					score_magnification++;
 				
 				//敵と弾の当たり判定
-				CollisionEnemyToBullet(enemy_info[y_index][x_index], hypothetical_bullet);
+				if(CollisionEnemyToBullet(enemy_info[y_index][x_index], hypothetical_bullet))
+					//スコア倍率UP
+					score_magnification++;
 			}
 
 			//敵とプレイヤーの弾の当たり判定
-			CollisionEnemyToBullet(enemy_info[y_index][x_index], player_info.GetBulletInfo(),true);
+			if(CollisionEnemyToBullet(enemy_info[y_index][x_index], player_info.GetBulletInfo(),true))
+				//スコア倍率UP
+				score_magnification++;
 
 			//敵の残りの数を取得
 			if (enemy_info[y_index][x_index].GetUseFlag())
@@ -50,9 +61,13 @@ void ScenePlay::StepPlay()
 		}
 	}
 
-	//敵のスポーン確率変動
-	if (enemy_alive_num != pre_enemy_alive_num && enemy_alive_num % ENEMY_CHANGE_SPAWN_PROBABILITY_NUM == 0) {
-		enemy_info[0][0].ChangeSpawnProbability(enemy_info[0][0].GetBulletSpawnProbability() - 1);
+	if (enemy_alive_num != pre_enemy_alive_num) {
+		//スコアUP
+		score += SCORE_POINT * score_magnification;
+
+		//敵のスポーン確率変動
+		if (enemy_alive_num % ENEMY_CHANGE_SPAWN_PROBABILITY_NUM == 0)
+			enemy_info[0][0].ChangeSpawnProbability(enemy_info[0][0].GetBulletSpawnProbability() - 1);
 	}
 	int probability = enemy_info[0][0].GetBulletSpawnProbability();
 	
@@ -88,7 +103,7 @@ void ScenePlay::DrawPlay()
 	player_info.Draw();
 }
 
-void ScenePlay::FinPlay()
+int ScenePlay::FinPlay()
 {
 	player_info.Fin();
 	for (int y_index = 0; y_index < ENEMY_NUM_Y; y_index++) {
@@ -96,4 +111,6 @@ void ScenePlay::FinPlay()
 			enemy_info[y_index][x_index].Fin();
 		}
 	}
+
+	return score;
 }

@@ -6,6 +6,8 @@
 
 constexpr int ENEMY_CHANGE_SPAWN_PROBABILITY_NUM = 2;
 
+constexpr int SCORE_POINT = 10;
+
 class ScenePlay
 {
 private:
@@ -16,11 +18,14 @@ private:
 	int enemy_alive_num = 0;
 	int pre_enemy_alive_num = 0;
 
+	int score = 0;
+	int score_magnification = 0;
+
 public:
 	void InitPlay();
 	void StepPlay();
 	void DrawPlay();
-	void FinPlay();
+	int FinPlay();
 
 	void StartStepPlay();
 

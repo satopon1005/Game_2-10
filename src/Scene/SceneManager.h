@@ -29,6 +29,8 @@ class SceneManager
 private:
 	int m_current_scene_ID;
 
+	int score;
+
 	SceneTitle scene_title;
 	ScenePlay scene_play;
 	SceneClear scene_clear;

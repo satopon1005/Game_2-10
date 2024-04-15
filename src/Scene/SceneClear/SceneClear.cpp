@@ -16,7 +16,7 @@ bool SceneClear::Step()
 	return false;
 }
 
-void SceneClear::Draw()
+void SceneClear::Draw(int score)
 {
 	DrawGraph(0, 0, bg_handle, true);
 }

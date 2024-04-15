@@ -10,6 +10,6 @@ private:
 public:
 	void Init();
 	bool Step();
-	void Draw();
+	void Draw(int score);
 	void Fin();
 };

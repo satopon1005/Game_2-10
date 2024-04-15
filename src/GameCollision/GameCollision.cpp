@@ -3,7 +3,7 @@
 #include "../MyMath/MyMath.h"
 #include "../Collision/Collision.h"
 
-void CollisionPlayerToBullet(VECTOR player_pos, Bullet& bullet_info)
+bool CollisionPlayerToBullet(VECTOR player_pos, Bullet& bullet_info)
 {
 	if (Collision::IsHitRectCircle(bullet_info.GetPos().x,
 									bullet_info.GetPos().y,
@@ -25,17 +25,21 @@ void CollisionPlayerToBullet(VECTOR player_pos, Bullet& bullet_info)
 			angle = PI * 2 - angle;
 
 		bullet_info.SetAngle(angle);
+
+		return true;
 	}
+
+	return false;
 }
 
-void CollisionEnemyToBullet(Enemy& enemy_info, Bullet& bullet_info, bool Switch)
+bool CollisionEnemyToBullet(Enemy& enemy_info, Bullet& bullet_info, bool Switch)
 {
 
 	if (!bullet_info.GetIsBound())
-		return;
+		return false;
 
 	if (!enemy_info.GetUseFlag() || !bullet_info.GetUseFlag())
-		return;
+		return false;
 
 	if (Collision::IsHitCircle(enemy_info.GetPos().x,
 								enemy_info.GetPos().y,
@@ -61,5 +65,8 @@ void CollisionEnemyToBullet(Enemy& enemy_info, Bullet& bullet_info, bool Switch)
 
 			bullet_info.SetAngle(angle);
 		}
+
+		return true;
 	}
+	return false;
 }

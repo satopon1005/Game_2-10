@@ -6,6 +6,8 @@ SceneManager::SceneManager()
 {
 	m_current_scene_ID = 0;
 
+	score = 0;
+
 	scene_title.Init();
 	scene_play.InitPlay();
 	scene_clear.Init();
@@ -70,7 +72,7 @@ void SceneManager::Main()
 		break;
 	}
 	case FIN_PLAY: {
-		scene_play.FinPlay();
+		score = scene_play.FinPlay();
 		break;
 	}
 	//=======================================================================================
@@ -104,7 +106,7 @@ void SceneManager::Main()
 		if (scene_clear.Step())
 			m_current_scene_ID = FIN_CLEAR;
 
-		scene_clear.Draw();
+		scene_clear.Draw(score);
 		break;
 	}
 	case FIN_CLEAR: {
