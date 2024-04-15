@@ -16,6 +16,7 @@ void ScenePlay::InitPlay()
 
 	score = 0;
 	score_magnification = 0;
+	enemy_alive_num = ENEMY_NUM_X * ENEMY_NUM_Y;
 }
 
 void ScenePlay::StepPlay()
@@ -40,9 +41,7 @@ void ScenePlay::StepPlay()
 				Bullet& hypothetical_bullet = enemy_info[y_index][x_index].GetRefeBulletInfo(bullet_index);
 				
 				//プレイヤーと弾の当たり判定
-				if (CollisionPlayerToBullet(player_info.GetPos(), hypothetical_bullet))
-					//スコア倍率UP
-					score_magnification++;
+				CollisionPlayerToBullet(player_info.GetPos(), hypothetical_bullet);
 				
 				//敵と弾の当たり判定
 				if(CollisionEnemyToBullet(enemy_info[y_index][x_index], hypothetical_bullet))
@@ -81,6 +80,8 @@ void ScenePlay::StepPlay()
 			}
 		}
 	}
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "%d", score);
+	DrawFormatString(0, 15, GetColor(255, 255, 255), "%d", score_magnification);
 }
 
 void ScenePlay::StartStepPlay()

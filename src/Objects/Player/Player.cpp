@@ -69,6 +69,12 @@ void PlayerInfo::Fin() {
 
 void PlayerInfo::Move()
 {
+	if (Input::IsKeyDown(KEY_INPUT_LSHIFT) || Input::IsKeyDown(KEY_INPUT_RSHIFT)) {
+		m_speedX = PLAYER_SPEED * 2;
+	}
+	else {
+		m_speedX = PLAYER_SPEED;
+	}
 	//ç∂à⁄ìÆëÄçÏ
 	if (Input::IsKeyDown(KEY_INPUT_LEFT))
 	{

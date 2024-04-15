@@ -13,7 +13,11 @@ bool CollisionPlayerToBullet(VECTOR player_pos, Bullet& bullet_info)
 									PLAYER_COLLISION_X,
 									PLAYER_COLLISION_Y)) {
 		//プレイヤーから弾へのベクトル
-		VECTOR player_to_bullet_vec = GetVector(player_pos, bullet_info.GetPos(), bullet_info.GetSpeed());
+		VECTOR player_to_bullet_vec = GetVector(VGet(player_pos.x,
+													player_pos.y + 10,
+													player_pos.z),
+												bullet_info.GetPos(),
+												bullet_info.GetSpeed());
 
 		bullet_info.SetVec(player_to_bullet_vec);
 

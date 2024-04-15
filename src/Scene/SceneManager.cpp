@@ -7,11 +7,6 @@ SceneManager::SceneManager()
 	m_current_scene_ID = 0;
 
 	score = 0;
-
-	scene_title.Init();
-	scene_play.InitPlay();
-	scene_clear.Init();
-	scene_gameover.Init();
 }
 SceneManager::~SceneManager()
 {
@@ -56,10 +51,10 @@ void SceneManager::Main()
 			scene_play.StepPlay();
 
 			if (!scene_play.GetPlayerInfo().GetBulletInfo().GetUseFlag()) {
-				m_current_scene_ID = INIT_GAMEOVER;
+				m_current_scene_ID = FIN_PLAY;
 			}
 			if (scene_play.GetEnemyAliveNum() == 0) {
-				m_current_scene_ID = INIT_CLEAR;
+				m_current_scene_ID = FIN_PLAY;
 			}
 		}
 		else {
@@ -72,6 +67,12 @@ void SceneManager::Main()
 		break;
 	}
 	case FIN_PLAY: {
+		if (!scene_play.GetPlayerInfo().GetBulletInfo().GetUseFlag()) {
+			m_current_scene_ID = INIT_GAMEOVER;
+		}
+		if (scene_play.GetEnemyAliveNum() == 0) {
+			m_current_scene_ID = INIT_CLEAR;
+		}
 		score = scene_play.FinPlay();
 		break;
 	}
@@ -97,7 +98,7 @@ void SceneManager::Main()
 	}
 	//=======================================================================================
 	case INIT_CLEAR: {
-		scene_clear.Init();
+		scene_clear.Init(score);
 
 		m_current_scene_ID = LOOP_CLEAR;
 		break;
