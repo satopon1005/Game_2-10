@@ -13,9 +13,16 @@ constexpr char ENEMY_PATH[5][128] = {
 	{"data/Enemy/enemy5.png"},
 };
 
-//‚±‚±‚ð•Ï‚¦‚½‚çBullel.h‚Ìˆê•”‚ð•Ï‚¦‚é
 constexpr int ENEMY_NUM_X = 7;
 constexpr int ENEMY_NUM_Y = 5;
+
+constexpr int ENEMY_TYPE[ENEMY_NUM_Y][ENEMY_NUM_X] = {
+	{0,0,0,0,0,0,0},
+	{1,1,1,1,1,1,1},
+	{2,2,2,2,2,2,2},
+	{3,3,3,3,3,3,3},
+	{4,4,4,4,4,4,4},
+};
 
 constexpr float ENEMY_COLLISION_R = 30;
 constexpr float ENEMY_SIZE_X = ENEMY_COLLISION_R * 3 / 2;

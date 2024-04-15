@@ -11,18 +11,6 @@ void SceneTitle::Init()
 
 bool SceneTitle::Step()
 {
-
-	DrawGraph(0, 0, bg_handle, true);
-
-	//100回のうち20回表示する(点滅処理)
-	static int count = 0;
-	count = (count + 1) % 100;
-	if (count < 20) {
-
-		//表示
-		DrawGraph(0, 100, Enterhandle, true);
-	}
-
 	if (Input::IsKeyPush(KEY_INPUT_RETURN)) {
 		return true;
 	}
@@ -32,7 +20,15 @@ bool SceneTitle::Step()
 void SceneTitle::Draw()
 {
 	DrawGraph(0, 0, bg_handle, true);
-	DrawGraph(0, 0, Enterhandle, true);
+
+	//100回のうち20回表示する(点滅処理)
+	static int count = 0;
+	count = (count + 1) % 60;
+	if (count < 30) {
+
+		//表示
+		DrawGraph(0, 100, Enterhandle, true);
+	}
 }
 
 void SceneTitle::Fin()

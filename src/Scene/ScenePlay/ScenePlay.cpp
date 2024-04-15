@@ -17,6 +17,7 @@ void ScenePlay::InitPlay()
 
 void ScenePlay::StepPlay()
 {
+	//前のフレームでの敵の残りの数
 	pre_enemy_alive_num = enemy_alive_num;
 	enemy_alive_num = 0;
 

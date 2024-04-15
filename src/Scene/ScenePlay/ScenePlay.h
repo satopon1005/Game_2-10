@@ -6,14 +6,6 @@
 
 constexpr int ENEMY_CHANGE_SPAWN_PROBABILITY_NUM = 2;
 
-constexpr int ENEMY_TYPE[ENEMY_NUM_Y][ENEMY_NUM_X] = {
-	{0,0,0,0,0,0,0},
-	{1,1,1,1,1,1,1},
-	{2,2,2,2,2,2,2},
-	{3,3,3,3,3,3,3},
-	{4,4,4,4,4,4,4},
-};
-
 class ScenePlay
 {
 private:
